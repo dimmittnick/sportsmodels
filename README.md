@@ -6,3 +6,7 @@ Repository for sportsmodels.org. This website will leverage machine learning and
 12-16-2022
 
 Need to get familiar with microsoft azure to house the data. Need to create a way that will update the database everyday. have the code to do it but dont know the link between the database and bulk uploading csv files.
+
+12-19-2022
+
+Slightly discouraged today. Started research on training ml models in web applications and there is A LOT to it. Nonetheless noticing a couple errors in my nhl fanpoints model that was skewing the predictions. Also tried to set up database for nhl data and failed epically. Will just start with a simple sqlite database because AWS, azure, and postgress were pissing me off. Building out the structure for this repo, will have multiple models that make daily predictions and then build from there. start small and scale up to interactive ML building on the website.

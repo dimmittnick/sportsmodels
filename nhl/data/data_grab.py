@@ -82,7 +82,7 @@ def date_list_gen(start, end):
 
 
 def main(start_date, end_date, data_seg, update_path, start, stop, step, update=False, saveData=False):
-    """main function, list comprhension to create list of dataframes then flattens that list, concatentes all of them and returns the df
+    """main function, list comprehension to create list of dataframes then flattens that list, concatentes all of them and returns the df
     """
     if update:
         df_old = pd.read_csv(update_path)
