@@ -7,7 +7,9 @@ from dateutil import relativedelta
 
 ## this needs to be updated after data is read in everytime and added to database
 ## most recent date: 11/01/22
-
+end_date = "2022-11-30"
+yesterday = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+today = datetime.today().strftime("%Y-%m-%d")
 
 def webscrape(url, data_string):
     """
@@ -112,9 +114,9 @@ def date_list_gen(start, end):
 
 
 
-def main(start_date, end_date, data_seg, update_path, start, stop, step, update=False, saveData=False):
+def df_gen(start_date, end_date, data_seg, update_path, start, stop, step, update=False, save_data=False):
     """
-    main function that returns concatenated dataframe of updated 
+    generates dataframe 
 
     params
     ----------------------
@@ -146,7 +148,7 @@ def main(start_date, end_date, data_seg, update_path, start, stop, step, update=
     if update:
         df_update = pd.concat([df, df_old])
     
-    if saveData:
+    if save_data:
         df_update.to_csv(f"/Users/nickdimmitt/Desktop/dfs_locally/df_{data_seg}.csv")
     
     if update:
@@ -154,3 +156,77 @@ def main(start_date, end_date, data_seg, update_path, start, stop, step, update=
         return df_update
     
     return df
+
+
+
+
+def main():
+    """main function that creates single dataframe for modeling and feature engineering with all the data segments
+
+    params
+    ----------------------
+
+    returns
+    ----------------------
+    dataframe: clean dataframe containing all data segments ready for feature engineering and modeling
+    """
+
+    df_skater = df_gen(start_date=yesterday, end_date=end_date, data_seg='skater', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/skaters.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_misc = df_gen(start_date=yesterday, end_date=end_date, data_seg='misc', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/misc.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_shot = df_gen(start_date=yesterday, end_date=end_date, data_seg='shots', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/shots.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_toi = df_gen(start_date=yesterday, end_date=end_date, data_seg='toi', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/toi.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_goalie = df_gen(start_date=yesterday, end_date=end_date, data_seg='goalie', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/goalies.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_team = df_gen(start_date=yesterday, end_date=end_date, data_seg='team', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/teams.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+
+    df_skater = df_skater.drop(['evGoals', 'evPoints','faceoffWinPct', 'gameWinningGoals', 'gamesPlayed', 'lastName', 'otGoals', 'pointsPerGame', 'timeOnIcePerGame'], axis=1)
+    df_skater = df_skater.loc[:, ~df_skater.columns.str.contains('^Unnamed')]
+    df_skater['teamAbbrevMerge'] = df_skater['teamAbbrev'].copy()
+
+    df_misc = df_misc.drop(['blockedShotsPer60', 'emptyNetAssists', 'homeRoad', 'emptyNetGoals', 'emptyNetPoints', 'firstGoals', 'gamesPlayed', 'giveaways', 'giveawaysPer60', 'hits', 'hitsPer60', 'missedShotCrossbar', 'missedShotGoalpost', 'missedShotOverNet', 'missedShotWideOfNet', 'missedShots', 'opponentTeamAbbrev', 'otGoals', 'takeaways', 'takeawaysPer60'], axis=1)
+    df_misc = df_misc.loc[:, ~df_misc.columns.str.contains('^Unnamed')]
+
+    df_shot = df_shot.drop(['gamesPlayed', 'goals', 'homeRoad', 'lastName', 'opponentTeamAbbrev', 'teamAbbrev', 'skaterFullName'], axis=1)
+    df_shot = df_shot.loc[:, ~df_shot.columns.str.contains('^Unnamed')]
+
+    df_toi = df_toi.drop(['evTimeOnIce', 'evTimeOnIcePerGame', 'gameDate', 'gamesPlayed', 'homeRoad', 'lastName', 'opponentTeamAbbrev','otTimeOnIce', 'otTimeOnIcePerOtGame', 'positionCode', 'shootsCatches','skaterFullName', 'teamAbbrev', 'timeOnIcePerGame'], axis=1)
+    df_toi = df_toi.loc[:, ~df_toi.columns.str.contains('^Unnamed')]
+
+    df_goalie = df_goalie.drop(['assists', 'gamesStarted', 'goals', 'goalsAgainstAverage', 'lastName', 'points', 'saves', 'ties', 'timeOnIce', 'wins'], axis=1)
+    df_goalie = df_goalie.loc[:, ~df_goalie.columns.str.contains('^Unnamed')]
+    df_goalie['goalieId'] = df_goalie['playerId'].copy()
+    df_goalie['teamAbbrevMerge'] = df_goalie['opponentTeamAbbrev'].copy()
+
+    df_team = df_team.drop(['faceoffWinPct', 'gamesPlayed', 'goalsAgainstPerGame', 'goalsForPerGame', 'losses', 'otLosses', 'penaltyKillNetPct', 'pointPct', 'powerPlayNetPct', 'powerPlayPct', 'regulationAndOtWins', 'ties', 'wins', 'winsInRegulation', 'winsInShootout'], axis=1)
+    df_team = df_team.loc[:, ~df_team.columns.str.contains('^Unnamed')]
+    df_team['teamAbbrevMerge'] = df_team['teamAbbrev'].copy()
+
+    df_goalie = df_goalie[['gameId', 'goalieId','goalieFullName','teamAbbrevMerge','savePct']]
+    df_team = df_team[['gameId', 'teamId', 'teamAbbrevMerge', 'goalsAgainst', 'shotsAgainstPerGame']]
+
+    df_merged = pd.merge(df_skater, df_misc, on=['gameId', 'playerId'])
+    df_merged.drop_duplicates(inplace=True)
+
+    df_merged = pd.merge(df_merged, df_shot, on=['gameId', 'playerId'])
+    df_merged.drop_duplicates(inplace=True)
+
+    df_merged = pd.merge(df_merged, df_toi, on=['gameId', 'playerId'])
+    df_merged.drop_duplicates(inplace=True)
+
+    df_merged = pd.merge(df_merged, df_goalie, on=['gameId', 'teamAbbrevMerge'])
+    df_merged.drop_duplicates(inplace=True)
+
+    df_merged = pd.merge(df_merged, df_team, on=['gameId', 'teamAbbrevMerge'])
+    df_merged.drop_duplicates(inplace=True)
+
+    df_merged = df_merged[['gameId', 'gameDate','playerId', 'opponentTeamAbbrev', 'teamAbbrevMerge', 'homeRoad', 'goalieId', 'goalieFullName', 'goals', 'assists', 'plusMinus',
+       'points', 'positionCode_x', 'ppGoals', 'ppPoints', 'shGoals',
+       'shPoints', 'shootingPct_x', 'shootsCatches_x', 'shots_x',
+       'skaterFullName_x', 'blockedShots',
+       'ppTimeOnIce', 'shTimeOnIce', 'shifts', 'timeOnIce',
+       'timeOnIcePerShift', 'savePct', 'goalsAgainst', 'shotsAgainstPerGame']]
+    
+    df_merged.columns = df_merged.columns.str.rstrip('_x')
+
+    return df_merged
+    
+
