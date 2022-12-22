@@ -46,9 +46,9 @@ def trainer(df, features, target, learning_rate, n_estimators, max_depth, scale=
     ----------------------
     mean absolute error and model score based off test data
     '''
-
+    df.columns = df.columns.astype(str)
     X = df[features].values
-    X.columns = X.columns.astype(str)
+    
 
     y = df[target].values
 
@@ -67,7 +67,7 @@ def trainer(df, features, target, learning_rate, n_estimators, max_depth, scale=
         print(f"{x}: {y}")
 
     if save_model:
-        joblib.dump(model, f"~/sportsmodels/nhl/models/fanpoints/skaters/models/{target}.pkl")
+        joblib.dump(model, f"{target}.pkl")
     
 
 
