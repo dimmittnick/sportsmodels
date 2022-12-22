@@ -67,6 +67,7 @@ df = data_prep.main(df, goalie_list=goalie_list, skater_list=skater_list, team_l
 
 cat_var = ['homeRoad', 'positionCode', 'shootsCatches']
 
+
 edf = data_train.ohe(df, cat_vars=cat_var)
 
 features = ['OpHomeDummy', 'OpRoadDummy', 'savePctLastGame', 'savePctMa3', 'savePctMa7','savePctMa16', 'goalsLastGame','goalsMa3', 'goalsMa7', 'goalsMa16', 'shotsLastGame', 'shotsMa3', 'shotsMa7', 'shotsMa16', 'timeOnIceLastGame', 'timeOnIceMa3', 'timeOnIceMa7', 'timeOnIceMa16', 'ppTimeOnIceLastGame','ppTimeOnIceMa3', 'ppTimeOnIceMa7','ppTimeOnIceMa16', 'fanPointsLastGame','fanPointsMa3', 'fanPointsMa7','fanPointsMa16', 'pointsLastGame','pointsMa3', 'pointsMa7','pointsMa16','goalsAgainstLastGame','goalsAgainstMa3','goalsAgainstMa7', 'goalsAgainstMa16', 'shotsAgainstPerGameLastGame','shotsAgainstPerGameMa3', 'shotsAgainstPerGameMa7','shotsAgainstPerGameMa16', '0', '1', '2', '3', '4', '5', '6', '7']
@@ -96,5 +97,4 @@ def make_preds(df, model_path, columns, scale=True):
     pred_df.to_csv(f'~/Desktop/pred_{today}.csv')
 
     
-def main():
-    make_preds(df=pred_df, model_path='/Users/nickdimmitt/sportsmodels/nhl/models/fanpoints/skaters/models/fanPoints.pkl', columns= ['skaterFullName', 'teamAbbrevCopy', 'opponentTeamAbbrevCopy', 'positionCodeCopy', 'predictions'], scale=True)
+make_preds(df=pred_df, model_path='/Users/nickdimmitt/sportsmodels/nhl/models/fanpoints/skaters/models/fanPoints.pkl', columns= ['skaterFullName', 'teamAbbrevMerge', 'opponentTeamAbbrev', 'predictions'], scale=True)
