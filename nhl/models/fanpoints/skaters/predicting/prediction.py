@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 from datetime import *
-import today
-from training import data, data_prep, training
+import today_data
+import sys
+sys.path.append('../training')
+import data, data_prep, data_train
 from sklearn.preprocessing import RobustScaler
 import joblib
 
@@ -55,17 +57,17 @@ goalie_list = ['savePct']
 skater_list = ['goals', 'shots', 'timeOnIce', 'ppTimeOnIce', 'fanPoints', 'points']
 team_list = ['goalsAgainst', 'shotsAgainstPerGame']
 
-home_teams, road_teams, games_dict_home, games_dict_road, goalie_dict = today.daily(daily_url=daily_url, nhl_teams=nhl_teams, team_map=team_map, road_teams_xpath=road_team_xpath, home_teams_xpath=home_team_xpath, road_goalies_xpath=road_goalie_xpath, home_goalies_xpath= home_goalie_xpath)
+home_teams, road_teams, games_dict_home, games_dict_road, goalie_dict = today_data.daily(daily_url=daily_url, nhl_teams=nhl_teams, team_map=team_map, road_teams_xpath=road_team_xpath, home_teams_xpath=home_team_xpath, road_goalies_xpath=road_goalie_xpath, home_goalies_xpath= home_goalie_xpath)
 
 df_goalie, df = data.main(goalie=True)
 
-df = today.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="12-01-2022", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
+df = today_data.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="12-01-2022", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
 
 df = data_prep.main(df, goalie_list=goalie_list, skater_list=skater_list, team_list=team_list, per_sixty_list=None)
 
 cat_var = ['homeRoad', 'positionCode', 'shootsCatches']
 
-edf = training.ohe(df, cat_vars=cat_var)
+edf = data_train.ohe(df, cat_vars=cat_var)
 
 features = ['OpHomeDummy', 'OpRoadDummy', 'savePctLastGame', 'savePctMa3', 'savePctMa7','savePctMa16', 'goalsLastGame','goalsMa3', 'goalsMa7', 'goalsMa16', 'shotsLastGame', 'shotsMa3', 'shotsMa7', 'shotsMa16', 'timeOnIceLastGame', 'timeOnIceMa3', 'timeOnIceMa7', 'timeOnIceMa16', 'ppTimeOnIceLastGame','ppTimeOnIceMa3', 'ppTimeOnIceMa7','ppTimeOnIceMa16', 'fanPointsLastGame','fanPointsMa3', 'fanPointsMa7','fanPointsMa16', 'pointsLastGame','pointsMa3', 'pointsMa7','pointsMa16','goalsAgainstLastGame','goalsAgainstMa3','goalsAgainstMa7', 'goalsAgainstMa16', 'shotsAgainstPerGameLastGame','shotsAgainstPerGameMa3', 'shotsAgainstPerGameMa7','shotsAgainstPerGameMa16', '0', '1', '2', '3', '4', '5', '6', '7']
 
