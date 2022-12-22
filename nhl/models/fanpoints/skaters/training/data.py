@@ -198,7 +198,7 @@ def main():
 
     df_team = df_team.drop(['faceoffWinPct', 'gamesPlayed', 'goalsAgainstPerGame', 'goalsForPerGame', 'losses', 'otLosses', 'penaltyKillNetPct', 'pointPct', 'powerPlayNetPct', 'powerPlayPct', 'regulationAndOtWins', 'ties', 'wins', 'winsInRegulation', 'winsInShootout'], axis=1)
     df_team = df_team.loc[:, ~df_team.columns.str.contains('^Unnamed')]
-    df_team['teamAbbrevMerge'] = df_team['teamAbbrev'].copy()
+    df_team['teamAbbrevMerge'] = df_team['opponentTeamAbbrev'].copy()
 
     df_goalie = df_goalie[['gameId', 'goalieId','goalieFullName','teamAbbrevMerge','savePct']]
     df_team = df_team[['gameId', 'teamId', 'teamAbbrevMerge', 'goalsAgainst', 'shotsAgainstPerGame']]
