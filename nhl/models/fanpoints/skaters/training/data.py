@@ -160,7 +160,7 @@ def df_gen(start_date, end_date, data_seg, update_path, start, stop, step, updat
 
 
 
-def main():
+def main(goalie=False):
     """main function that creates single dataframe for modeling and feature engineering with all the data segments
 
     params
@@ -227,6 +227,10 @@ def main():
     
     df_merged.columns = df_merged.columns.str.rstrip('_x')
 
-    return df_merged
+    if goalie:
+        return df_goalie, df_merged
+    
+    else:
+        return df_merged
     
 

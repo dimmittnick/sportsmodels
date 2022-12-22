@@ -78,3 +78,51 @@ def daily(daily_url, nhl_teams, team_map, road_teams_xpath, home_teams_xpath, ro
     return home_teams, road_teams, games_dict_home, games_dict_road, goalie_dict
 
     
+def today_df(df, home_teams, road_teams, cutoff, today, games_dict_home, games_dict_road, goalie_dict, df_goalie):
+
+    today_home_df = df[(df['gameDate'] > cutoff) & (df['teamAbbrevMerge'].isin(home_teams))]
+    today_road_df = df[(df['gameDate'] > cutoff) & (df['teamAbbrevMerge'].isin(road_teams))]
+
+
+    today_home_df['gameDate'] = today
+    today_road_df['gameDate'] = today
+
+    today_home_df['homeRoad'] = 'H'
+    today_road_df['homeRoad'] = 'R'
+
+    today_home_df[['goals', 'assists',
+       'plusMinus', 'points', 'ppGoals', 'ppPoints', 'shGoals',
+       'shPoints', 'shootingPct', 'shots', 'blockedShots', 'ppTimeOnIce', 'shTimeOnIce', 'shifts', 'timeOnIce',
+       'timeOnIcePerShift', 'savePct', 'goalsAgainst', 'shotsAgainstPerGame']] = 0
+
+    today_road_df[['goals', 'assists',
+       'plusMinus', 'points', 'ppGoals', 'ppPoints', 'shGoals',
+       'shPoints', 'shootingPct', 'shots', 'blockedShots', 'ppTimeOnIce', 'shTimeOnIce', 'shifts', 'timeOnIce',
+       'timeOnIcePerShift', 'savePct', 'goalsAgainst', 'shotsAgainstPerGame']] = 0
+    
+    today_road_df['opponentTeamAbbrev'] = today_road_df['teamAbbrevMerge'].map(games_dict_road)
+    today_home_df['opponentTeamAbbrev'] = today_home_df['teamAbbrevMerge'].map(games_dict_home)
+
+
+
+    today_road_df['goalieFullName'] = today_road_df['teamAbbrevMerge'].map(goalie_dict)
+    today_home_df['goalieFullName'] = today_home_df['teamAbbrevMerge'].map(goalie_dict)
+
+    today_df = pd.concat([today_home_df, today_road_df])
+    today_df.drop_duplicates(subset='playerId', inplace=True)
+
+    goalies = list(df_goalie['goalieFullName'])
+    goalieId = list(df_goalie['goalieId'])
+
+    goalie_map = {}
+
+    for i in range(len(goalies)):
+        goalie_map[goalies[i]] = goalieId[i]
+
+    today_df['goalieId'] = today_df['goalieFullName'].map(goalie_map)
+
+    today_df['gameDate'] = today
+
+    df = pd.concat([df, today_df])
+
+    return df
