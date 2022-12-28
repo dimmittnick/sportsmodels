@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import data, data_prep, data_train
 
+## training script
+## can change the features adn target to retrain model but make sure not to overwrite old models
 goalie_list = ['savePct']
 skater_list = ['goals', 'shots', 'timeOnIce', 'ppTimeOnIce', 'fanPoints', 'points']
 team_list = ['goalsAgainst', 'shotsAgainstPerGame']

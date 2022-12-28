@@ -48,8 +48,6 @@ def trainer(df, features, target, learning_rate, n_estimators, max_depth, scale=
     '''
     df.columns = df.columns.astype(str)
     X = df[features].values
-    
-
     y = df[target].values
 
     if scale:

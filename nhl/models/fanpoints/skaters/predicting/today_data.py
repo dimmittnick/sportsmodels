@@ -52,6 +52,27 @@ road_goalie_xpath = '/html/body/div[1]/div/main/div[3]//div//div//div//ul[1]//li
 home_goalie_xpath = '/html/body/div[1]/div/main/div[3]//div//div//div//ul[2]//li[1]//div[1]/a[1]/text()'
 
 def daily(daily_url, nhl_teams, team_map, road_teams_xpath, home_teams_xpath, road_goalies_xpath, home_goalies_xpath):
+    """
+    scraps and returns all of the daily matchups and goalies 
+
+    params
+    ----------------------
+    daily_url: rotowire url to todays games
+    nhl_teams: list of all nhl team abbrevs
+    team_map: mapping of rotowire abbrev to nhl abbrev
+    road_teams_xpath: xpath to grab all road teams
+    home_teams_xpath: xpath to grab all home teams
+    road_goalies_xpath: xpath to grab all road goalies
+    home_goalies_xapth: xpath to grab all home goalies
+
+    returns
+    ----------------------
+    home_teams: list of home team abbrevs
+    road_teams: list of road team abbrevs
+    games_dict_home: dictionary containing home teams as key and road teams as value
+    games_dict_road: dictionary containg road teams as key and home teams as value
+    goalie_dict: dictionary containing team abbrev as key and opposing goalie as value
+    """
     results = requests.get(daily_url)
     results_tree = html.fromstring(results.content)
 
@@ -79,7 +100,25 @@ def daily(daily_url, nhl_teams, team_map, road_teams_xpath, home_teams_xpath, ro
 
     
 def today_df(df, home_teams, road_teams, cutoff, today, games_dict_home, games_dict_road, goalie_dict, df_goalie):
+    """
+    adds daily data to the entire data frame to make it ready for modeling
 
+    params
+    ----------------------
+    df: dataframe
+    home_teams: list of todays home teams
+    road_teams: list of todays road teams
+    cutoff: cutoff date for data grab
+    today: todays date
+    games_dict_home: dictionary containing home teams as key and road teams as value
+    games_dict_road: dictionary containg road teams as key and home teams as value
+    goalie_dict: dictionary containing team abbrev as key and opposing goalie as value
+
+    returns
+    ----------------------
+    dataframe: dataframe containing todays data
+    """
+    
     today_home_df = df[(df['gameDate'] > cutoff) & (df['teamAbbrevMerge'].isin(home_teams))]
     today_road_df = df[(df['gameDate'] > cutoff) & (df['teamAbbrevMerge'].isin(road_teams))]
 

@@ -8,6 +8,9 @@ import data, data_prep, data_train
 from sklearn.preprocessing import RobustScaler
 import joblib
 
+## script that generates daily predictions
+## run this in terminal and it will generate the predictions onto the desktop
+
 daily_url = "https://www.rotowire.com/hockey/nhl-lineups.php"
 
 nhl_teams = 'ANA ANH ARI BOS BUF CAR CGY CHI CLS CBJ COL DAL DET EDM FLA LA LAK MIN MON MTL NJ NSH NYI NYR OTT PHI PIT SEA SJ SJS STL TB TBL TOR VAN VGK WAS WPG'.split()
@@ -75,6 +78,20 @@ features = ['OpHomeDummy', 'OpRoadDummy', 'savePctLastGame', 'savePctMa3', 'save
 pred_df = edf[edf['gameDate'] == today]
 
 def make_preds(df, model_path, columns, scale=True):
+    """
+    makes predictions by loading in model and saves predictions to desktop
+
+    params
+    ----------------------
+    df: dataframe
+    model_path: path to model
+    columns: columns to display in final prediction csv
+    scale: whether to scale the data or not
+
+    returns
+    ----------------------
+    csv file of predictions to desktop 
+    """
 
     df.columns = df.columns.astype(str)
     X = df[features].values
