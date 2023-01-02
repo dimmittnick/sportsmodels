@@ -1,0 +1,29 @@
+model to predict finishing position for each golfer based off their rolling sg statistics
+
+1/2/2022
+
+achieved r^2 of .11 for sentry tourament, again, training tournament by tournament, might even try course by course instead
+
+r^2: 0.13602820818795758
+mae: 7.19369942208995
+
+feature importances:
+
+sg_puttMa3:0.012642357498407364
+sg_puttMa7:0.026361821219325066
+sg_puttMa21:0.0154916075989604
+sg_argMa3:0.027589190751314163
+sg_argMa7:0.060711704194545746
+sg_argMa21:0.03542160615324974
+sg_appMa3:0.015219907276332378
+sg_appMa7:0.05227123945951462
+sg_appMa21:0.03795545548200607
+sg_ottMa3:0.07821670919656754
+sg_ottMa7:0.04269230365753174
+sg_ottMa21:0.031657978892326355
+sg_t2gMa3:0.034486446529626846
+sg_t2gMa7:0.039476171135902405
+sg_t2gMa21:0.019301701337099075
+sg_totalMa3:0.275128036737442
+sg_totalMa7:0.08968418091535568
+sg_totalMa21:0.1056915819644928

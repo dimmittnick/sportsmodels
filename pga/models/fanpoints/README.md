@@ -1,0 +1,29 @@
+model that predicts fanpoints for each tournament
+
+1/2/2022
+
+using rolling shots gained statistics acheived a .08 r^2 for sentry tournament
+have been training tournamnet by tournament because each tournament requires different skill sets to win
+
+r^2: 0.1120906242799059
+mae: 3.611721370531165
+
+feature importances for sentry:
+sg_puttMa3:0.009479735977947712
+sg_puttMa7:0.018333645537495613
+sg_puttMa21:0.008835957385599613
+sg_argMa3:0.036222804337739944
+sg_argMa7:0.05162808299064636
+sg_argMa21:0.00541424285620451
+sg_appMa3:0.025948772206902504
+sg_appMa7:0.019418170675635338
+sg_appMa21:0.06592948734760284
+sg_ottMa3:0.045201875269412994
+sg_ottMa7:0.01497180201113224
+sg_ottMa21:0.06204777583479881
+sg_t2gMa3:0.052605245262384415
+sg_t2gMa7:0.03791208192706108
+sg_t2gMa21:0.04189698025584221
+sg_totalMa3:0.38082778453826904
+sg_totalMa7:0.09687472879886627
+sg_totalMa21:0.026450887322425842
