@@ -10,3 +10,7 @@ Need to get familiar with microsoft azure to house the data. Need to create a wa
 12-19-2022
 
 Slightly discouraged today. Started research on training ml models in web applications and there is A LOT to it. Nonetheless noticing a couple errors in my nhl fanpoints model that was skewing the predictions. Also tried to set up database for nhl data and failed epically. Will just start with a simple sqlite database because AWS, azure, and postgress were pissing me off. Building out the structure for this repo, will have multiple models that make daily predictions and then build from there. start small and scale up to interactive ML building on the website.
+
+1-14-2023
+
+have made decent process for pga models, more importantly have started developing the bones for sportsmodels.com. Will have multiple pages for mlb, nhl, pga predictions where manually running modle with populate database which will update on the webpage. very limited interactivity for the user but having a platform for the models is an important first step. 
