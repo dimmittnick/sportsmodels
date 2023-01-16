@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("", include("home.urls")),
+    path("", include(("home.urls", "home"), namespace="home")),
     path('admin/', admin.site.urls),
-    path('nhl/', include("nhl.urls")),
-    path('pga/', include("pga.urls")),
-    path('mlb/', include("mlb.urls"))
+    path('nhl/', include(("nhl.urls", "nhl"), namespace="nhl")),
+    path('pga/', include(("pga.urls", "pga"), namespace="pga")),
+    path('mlb/', include(("mlb.urls", "mlb"), namespace="mlb"))
 ]

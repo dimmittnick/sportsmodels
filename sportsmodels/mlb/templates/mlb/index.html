@@ -1,13 +1,11 @@
-{% extends "mlb/layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Hello!</title>
+    </head>
+    <body>
+        <h1>MLB Predictions</h1>
+        <a href="{% url 'home:index' %}">Return Home</a>
+    </body>
 
-{% block body %}
-    <h1>Tasks</h1>
-    <ul>
-        {% for task in tasks %}
-            <li>{{ task }}</li> 
-        {% empty %}
-            <li>No tasks.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'tasks:add' %}">Add a New Task</a>
-{% endblock %}
+</html>

@@ -1,15 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Is it maya's birthday?</title>
-        <link href="{% static 'pga/styles.css' %}" rel="stylesheet">
+        <title>Hello!</title>
     </head>
     <body>
-        {% if birthday %}
-            <h1>YES</h1>
-        {% else %}
-            <h1>NO</h1>
-        {% endif %}
+        <h1>PGA Predictions</h1>
+        <a href="{% url 'home:index' %}">Return Home</a>
     </body>
 </html>
