@@ -1,13 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Hello!</title>
+        <title>sportsmodels.org | machine learning | sports analytics</title>
+        <link href="{% static 'home/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1>Welcome to sportsmodels.org!</h1>
-        <a href="{% url 'nhl:index' %}">NHL</a>
-        <a href="{% url 'mlb:index' %}">MLB</a>
-        <a href="{% url 'pga:index' %}">PGA</a>
+        <h1>sportsmodels.org</h1>
+        <a href="{% url 'nhl:index' %}">nhl</a>
+        <a href="{% url 'mlb:index' %}">mlb</a>
+        <a href="{% url 'pga:index' %}">pga</a>
     </body>
 
 </html>
