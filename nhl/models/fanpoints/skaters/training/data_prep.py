@@ -179,6 +179,8 @@ def main(df, goalie_list, skater_list, team_list, per_sixty_list):
     df['OpRoadDummy'] = np.where(df['playerId'].isin(better_away_skater), 1, 0)
     df['OpNowhereDummy'] = np.where((df['OpHomeDummy'] == 0) & (df['OpRoadDummy'] == 0), 1, 0)
 
+    df.sort_values('gameDate', ascending=True, inplace=True)
+
     for x in goalie_list:
         df[f'{x}LastGame'] = moving_average(df=df, column=x, groupby='goalieId', window=1)
         df[f'{x}Ma3'] = moving_average(df=df, column=x, groupby='goalieId', window=3)
@@ -198,5 +200,6 @@ def main(df, goalie_list, skater_list, team_list, per_sixty_list):
         df[f'{x}Ma16'] = moving_average(df=df, column=x, groupby='opponentTeamAbbrev', window=16)
 
     df.drop_duplicates(inplace=True)
+    df = df[df['fanPointsMa16'] > 6]
 
     return df

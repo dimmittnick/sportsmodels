@@ -64,12 +64,11 @@ home_teams, road_teams, games_dict_home, games_dict_road, goalie_dict = today_da
 
 df_goalie, df = data.main(goalie=True)
 
-df = today_data.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="12-01-2022", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
+df = today_data.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="01-10-2023", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
 
 df = data_prep.main(df, goalie_list=goalie_list, skater_list=skater_list, team_list=team_list, per_sixty_list=None)
 
 cat_var = ['homeRoad', 'positionCode', 'shootsCatches']
-
 
 edf = data_train.ohe(df, cat_vars=cat_var)
 

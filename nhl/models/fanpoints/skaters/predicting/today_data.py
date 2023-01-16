@@ -143,12 +143,11 @@ def today_df(df, home_teams, road_teams, cutoff, today, games_dict_home, games_d
     today_home_df['opponentTeamAbbrev'] = today_home_df['teamAbbrevMerge'].map(games_dict_home)
 
 
-
     today_road_df['goalieFullName'] = today_road_df['teamAbbrevMerge'].map(goalie_dict)
     today_home_df['goalieFullName'] = today_home_df['teamAbbrevMerge'].map(goalie_dict)
 
     today_df = pd.concat([today_home_df, today_road_df])
-    today_df.sort_values('gameDate', ascending=True)
+    # today_df.sort_values('gameDate', ascending=True)
     today_df.drop_duplicates(subset='playerId', keep='last', inplace=True)
 
     goalies = list(df_goalie['goalieFullName'])
@@ -164,5 +163,5 @@ def today_df(df, home_teams, road_teams, cutoff, today, games_dict_home, games_d
     today_df['gameDate'] = today
 
     df = pd.concat([df, today_df])
-
+    
     return df
