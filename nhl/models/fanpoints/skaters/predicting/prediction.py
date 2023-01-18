@@ -7,6 +7,8 @@ sys.path.append('../training')
 import data, data_prep, data_train
 from sklearn.preprocessing import RobustScaler
 import joblib
+import warnings
+warnings.filterwarnings("ignore")
 
 ## script that generates daily predictions
 ## run this in terminal and it will generate the predictions onto the desktop
@@ -64,7 +66,7 @@ home_teams, road_teams, games_dict_home, games_dict_road, goalie_dict = today_da
 
 df_goalie, df = data.main(goalie=True)
 
-df = today_data.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="01-10-2023", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
+df = today_data.today_df(df=df, home_teams=home_teams, road_teams=road_teams, cutoff="2022-10-10", today=today, games_dict_home=games_dict_home, games_dict_road=games_dict_road, goalie_dict=goalie_dict, df_goalie=df_goalie)
 
 df = data_prep.main(df, goalie_list=goalie_list, skater_list=skater_list, team_list=team_list, per_sixty_list=None)
 

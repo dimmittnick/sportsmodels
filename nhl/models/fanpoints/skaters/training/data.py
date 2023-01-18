@@ -149,7 +149,7 @@ def df_gen(start_date, end_date, data_seg, update_path, start, stop, step, updat
         df_update = pd.concat([df, df_old])
     
     if save_data:
-        df_update.to_csv(f"/Users/nickdimmitt/Desktop/dfs_locally/df_{data_seg}.csv")
+        df_update.to_csv(f"/Users/nickdimmitt/Desktop/dfs_local/df_{data_seg}.csv")
     
     if update:
         
@@ -226,6 +226,8 @@ def main(goalie=False):
        'timeOnIcePerShift', 'savePct', 'goalsAgainst', 'shotsAgainstPerGame']]
     
     df_merged.columns = df_merged.columns.str.rstrip('_x')
+
+    df_merged.sort_values(by='gameDate', ascending=True)
 
     if goalie:
         return df_goalie, df_merged
