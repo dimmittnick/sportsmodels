@@ -8,6 +8,10 @@
 -->
 <html>
 	<head>
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/home/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/home/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/home/images/favicon-16x16.png">
+		<link rel="manifest" href="/static/home/images/site.webmanifest">
 		<title>sportsmodels.org | home</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -37,7 +41,7 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>sportsmodels.org</h1>
-							<p>combining machine learning and predictive analytics to guide your fantasy and sports betting decisions
+							<p>Combining machine learning and predictive analytics to guide your fantasy and sports betting decisions.
 							</p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">learn more</a></li>
@@ -47,28 +51,28 @@
 				<!-- One -->
 					<section id="one" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>what we do</h2>
-							<p>to many, "machine learning" is a black box, but did you know it is consistently used by many odds makers and professional handicappers to generate predictions which guide their lines and decisions? we want to provide the average sports bettor and fantasy player with transparent tools and information.</p>
+							<h2>Our Mission</h2>
+							<p>To many, "machine learning" is a black box, but it is consistently used by many odds makers and professional handicappers to generate predictions which guide their lines and decisions. We provide the average sports bettor and fantasy player with transparent tools and information.</p>
 							<div class="features">
 								<section>
+									<span class="icon solid major fa-eye"></span>
+									<h3>Transparency</h3>
+									<p>There is no such thing as a perfectly predictive model in sports. The randomness of sports makes it mathematically impossible to predict on a consistent basis. Gaining edge over odds makers comes from combining statistical tools with your own sports knowledge and intuition. For some people, these machine learning models will provide no value, but to others, when combined with their ability to analyze sports from a human perspective, can yield great results.</p>
+								</section>
+								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>transparency</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>The Process</h3>
+									<p>Our team applies machine learning models and methods to publically avaiable data to create predictive models for various leagues and sports. The models we use in production are the ones we feel the most confident in based on model testing and accuracy metrics. We will always be transparent about our methodologies and accuracy scores! They will always be displayed in clear language on each models homepage.</p>
 								</section>
 								<section>
-									<span class="icon solid major fa-lock"></span>
-									<h3>process</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<span class="icon solid major fa-database"></span>
+									<h3>Models</h3>
+									<p>As of now, we have a daily hockey model that can predict an individual skaters fantasy output for each game. Along with that, we develop individual mdoels for each golf tournament, predicting the finishing position of each golfer in the field. These models have taken months to develop, testing different methodologies and feature engineering.</p>
 								</section>
 								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>models</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-desktop"></span>
-									<h3>future</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<span class="icon solid major fa-lightbulb"></span>
+									<h3>Future</h3>
+									<p>Let us know! We love exploring new model ideas. If there is data, we will try to model it! We are currently working on expanding our hockey models to predict all of the statistics for a skater (goals, assists, points) instead of solely their fantasy output. We also are currently developing our biggest model yet, a daily predictor for MLB hitters and pitchers.</p>
 								</section>
 							</div>
 						</div>
@@ -77,37 +81,39 @@
 				<!-- Two -->
 					<section id="two" class="wrapper style2 spotlights">
 						<section>
-							<a href="#" class="image"><img src="{% static 'home/images/pic01.jpg' %}" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>pga</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h2>PGA</h2>
+									<p>PGA model that predicts the finishing position for all golfers. Model is retrained every tournament to maximize accuracy. Click to view predictions and more information on model methodology.</p>
 									<ul class="actions">
-										<li><a href="{% url 'pga:index' %}" class="button">Learn more</a></li>
+										<li><a href="{% url 'pga:index' %}" class="button">Learn More</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="{% static 'home/images/pic02.jpg' %}" alt="" data-position="top center" /></a>
+							<!--<a href="#" class="image"><img src="{% static 'home/images/pic02.jpg' %}" alt="" data-position="top center" /></a>/-->
 							<div class="content">
 								<div class="inner">
-									<h2>nhl</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<span class="icon solid major fa-hockey-puck"></span>
+									<h2>NHL</h2>
+									<p>NHL model that generates daily predictions for all skaters. Daily fantasy points are the only available metric for now. An individual model for goals and goalies is coming soon. Click to view predictions and more information on model methodology.</p>
 									<ul class="actions">
-										<li><a href="{% url 'nhl:index' %}"" class="button">Learn more</a></li>
+										<li><a href="{% url 'nhl:index' %}" class="button">Learn More</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="{% static 'home/images/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>
+							<!--<a href="#" class="image"><img src="{% static 'home/images/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>-->
 							<div class="content">
 								<div class="inner">
-									<h2>mlb</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<span class="icon solid major fa-baseball-ball"></span>
+									<h2>MLB</h2>
+									<p>MLB model is in development. It will generate daily predictions for hitters and pitchers. Click to read more about our strategy and progress.</p>
 									<ul class="actions">
-										<li><a href="{% url 'mlb:index' %}" class="button">Learn more</a></li>
+										<li><a href="{% url 'mlb:index' %}" class="button">Learn More</a></li>
 									</ul>
 								</div>
 							</div>
@@ -119,38 +125,38 @@
 				<!-- Three -->
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>contact us</h2>
-							<p>if you have questions, complaints, suggestions, or ideas on different models you would like to see. feel free to email or submit a short message below.</p>
+							<h2>Contact Us</h2>
+							<p>If you have questions, complaints, suggestions, or ideas on different models you would like to see. Feel free to email or submit a short message below.</p>
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
 										<div class="fields">
 											<div class="field half">
-												<label for="name">name</label>
+												<label for="name">Name</label>
 												<input type="text" name="name" id="name" />
 											</div>
 											<div class="field half">
-												<label for="email">email</label>
+												<label for="email">Email</label>
 												<input type="text" name="email" id="email" />
 											</div>
 											<div class="field">
-												<label for="message">message</label>
+												<label for="message">Message</label>
 												<textarea name="message" id="message" rows="5"></textarea>
 											</div>
 										</div>
 										<ul class="actions">
-											<li><a href="" class="button submit">send message</a></li>
+											<li><a href="" class="button submit">Send Message</a></li>
 										</ul>
 									</form>
 								</section>
 								<section>
 									<ul class="contact">
 										<li>
-											<h3>email</h3>
+											<h3>Email</h3>
 											<a href="#">something@gmail.com</a>
 										</li>
 										<li>
-											<h3>phone</h3>
+											<h3>Phone</h3>
 											<span>(000) 000-0000</span>
 										</li>
 										<li>
@@ -175,7 +181,7 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Untitled. All rights reserved.</li>
 					</ul>
 				</div>
 			</footer>
