@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import NhlPreds
 
-# Create your views here.
 def index(request):
-    return render(request, "nhl/index.html")
+    return render(request, "nhl/index.html", {
+        "preds": NhlPreds.objects.all()
+    })
+

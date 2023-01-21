@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>sportsmodels.org | nhl</title>
+        <title>sportsmodels.org | NHL</title>
     </head>
     <body>
-        <h1>nhl predictions</h1>
-        <a href="{% url 'home:index' %}">home</a>
+        <h1>NHL Predictions</h1>
+        <a href="{% url 'home:index' %}">Return Home</a>
+        <table width="600">
+            <tr>
+                <td>Date</td>
+                <td>Skater</td>
+                <td>Team</td>
+                <td>Opponent</td>
+                <td>Prediction</td>
+            </tr>
+        {% for pred in preds %}
+            <tr>
+                <td>{{ pred.date }}</td>
+                <td>{{ pred.skater }}</td>
+                <td>{{ pred.team }}</td>
+                <td>{{ pred.opponent }}</td>
+                <td>{{ pred.prediction }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        
     </body>
 </html>
