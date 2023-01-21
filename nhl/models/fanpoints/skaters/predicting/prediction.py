@@ -78,7 +78,7 @@ features = ['OpHomeDummy', 'OpRoadDummy', 'savePctLastGame', 'savePctMa3', 'save
 
 pred_df = edf[edf['gameDate'] == today]
 
-def make_preds(df, model_path, columns, scale=True):
+def make_preds(df, model_path, columns, today, scale=True):
     """
     makes predictions by loading in model and saves predictions to desktop
 
@@ -111,8 +111,11 @@ def make_preds(df, model_path, columns, scale=True):
 
     pred_df = df[columns].sort_values('predictions', ascending=False)
 
+    pred_df['date'] = today
+    pred_df = pred_df[['date', 'skaterFullName', 'teamAbbrevMerge', 'opponentTeamAbbrev', 'predictions']]
 
-    pred_df.to_csv(f'~/Desktop/pred_{today}.csv')
+    pred_df.to_csv(f'~/sportsmodels/sportsmodels/nhl_preds.csv', header=None)
+
 
     
-make_preds(df=pred_df, model_path='/Users/nickdimmitt/sportsmodels/nhl/models/fanpoints/skaters/models/fanPoints.pkl', columns= ['skaterFullName', 'teamAbbrevMerge', 'opponentTeamAbbrev', 'predictions'], scale=True)
+make_preds(df=pred_df, model_path='/Users/nickdimmitt/sportsmodels/nhl/models/fanpoints/skaters/models/fanPoints.pkl', columns= ['skaterFullName', 'teamAbbrevMerge', 'opponentTeamAbbrev', 'predictions'],today=today, scale=True)
