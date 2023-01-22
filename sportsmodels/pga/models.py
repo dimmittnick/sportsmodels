@@ -1,3 +1,7 @@
 from django.db import models
+from datetime import *
 
-# Create your models here.
+
+class PgaPreds(models.Model):
+    golfer = models.CharField(('Golfer'), max_length=64)
+    position = models.IntegerField(('Ranking'))

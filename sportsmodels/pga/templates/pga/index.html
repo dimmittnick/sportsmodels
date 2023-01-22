@@ -1,10 +1,164 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>sportsmodels.org | pga</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/home/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/home/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/home/images/favicon-16x16.png">
+		<link rel="manifest" href="/static/home/images/site.webmanifest">
+        <title>sportsmodels.org | PGA</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'home/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'home/css/noscript.css' %}" /></noscript>
     </head>
-    <body>
-        <h1>pga predictions</h1>
-        <a href="{% url 'home:index' %}">home</a>
+
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px;
+        }
+
+        .content-table thead tr {
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px;
+        }
+
+        .content-table tbody tr:last-of-type{
+            border-bottom: 2px solid;
+        }
+        
+        .content-table tr:hover {
+            font-weight: bold;
+            color: white;
+        }
+
+    </style>
+
+    <body class="is_preload">
+        <!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Introduction</a></li>
+							<li><a href="#one">Predictions</a></li>
+                            <li><a href="#two">More Information</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+        <!-- Wrapper -->
+			<div id="wrapper">
+                <!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+                            <h1>PGA Predictions</h1>
+                            <p>Our NHL predictions take into account a skaters recent form, their opponent, opposing goalie, and home/away splits to generate daily fantasy predictions for DFS or player props.</p>
+                            
+                            <ul class="actions">
+								<li><a href="#one" class="button scrolly">Predictions</a></li>
+                                <li><a href="#two" class="button scrolly">More Information</a></li>
+                                <li><a href="{% url 'home:index' %}" class="button scrolly">Return Home</a></li>
+							</ul>
+                        </div>
+                    </section>
+                <!-- One -->
+					<section id="one" class="wrapper style3 fade-up">
+						<div class="inner">
+                            <h2>Predictions</h2>
+                            <table class="content-table">
+                                <tr>
+                                    <th>Golfer</th>
+                                    <th>Position</th>
+                                </tr>
+                                {% for pred in sorted_preds %}
+                                <tr>
+                                    <td>{{ pred.golfer }}</td>
+                                    <td>{{ pred.position }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </section>
+                <!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>More Information</h2>
+							<p>Below details some of the more technical aspects of this model and gives tips on how to use these predictions.</p>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h3>Best Uses</h3>
+                                    <ul style="list-style-type: disc">
+                                        <li>Expecting these predictions to accurately reflect the fantasy output of these skaters is unrealistic</li>
+									    <li>Best used for ranking or comparing players</li> 
+                                        <li>Show strong rank ordering (best players at top of list and worst at bottom)</li> 
+                                        <li>Tip: if a mediocre player shows up near the top of the rankings, they could be primed for an overperformance</li>
+                                    </ul> 
+                                    </section>
+								<section>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h3>Target and Features</h3>
+									<ul style="list-style-type: disc">
+                                        <li>Target: Daily fantasy points (assists = 8 points, goals = 12 points, powerplay points = 0.5, etc)</li>
+									    <li>Features: Statistics from last game, 3, 10, and 14-day goals, assists, points moving average, position, home or away, opponent, opposing goalie</li> 
+                                        
+                                    </ul> 
+								</section>
+								<section>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h3>Training</h3>
+									<ul style="list-style-type: disc">
+                                        <li>This model used Robust Scaling with an xGBoost Regressor</li>
+                                        <li>xGBoost is a tree-structured regression technique that is very popular with tabular data</li>
+                                        <li>Months of experimenting with various features, other tree based techniques, and KNN and Monte Carlo simulations</li>
+                                    </ul> 
+								</section>
+								<section>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h3>Results</h3>
+									<ul style="list-style-type: disc">
+                                        <li>Minimized mean absolute error to narrow down model hyperparameters</li>
+									    <li>Final model score hovered around 0.22</li> 
+                                        <li>Great rank ordering but model is conservative, meaning it won't make out of the ordinary predictions, like a player scoring a hat trick</li> 
+								</section>
+							</div>
+						</div>
+					</section>
+            <!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+            <!-- Scripts -->
+			<script src="{% static 'home/js/jquery.min.js' %}"></script>
+			<script src="{% static 'home/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'home/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'home/js/browser.min.js' %}"></script>
+			<script src="{% static 'home/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'home/js/util.js' %}"></script>
+			<script src="{% static 'home/js/main.js' %}"></script>
+
+        
     </body>
 </html>

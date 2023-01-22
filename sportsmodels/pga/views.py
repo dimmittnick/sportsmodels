@@ -1,9 +1,10 @@
 import datetime
 from django.shortcuts import render
+from .models import PgaPreds
 
-# Create your views here.
 def index(request):
-    now = datetime.datetime.now()
-    return render(request, "pga/index.html", {
-        "birthday": now.month == 9 and now.day == 3
-    })
+    allpreds = PgaPreds.objects.all()
+    sorted_preds = sorted(allpreds, key=lambda x:x.position, reverse=False)
+    context = {'allpreds':allpreds,
+               'sorted_preds':sorted_preds}
+    return render(request, "pga/index.html", context)
