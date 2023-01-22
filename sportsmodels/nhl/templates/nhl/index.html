@@ -14,7 +14,7 @@
                 <td>Opponent</td>
                 <td>Prediction</td>
             </tr>
-        {% for pred in preds %}
+        {% for pred in sorted_preds %}
             <tr>
                 <td>{{ pred.date }}</td>
                 <td>{{ pred.skater }}</td>
