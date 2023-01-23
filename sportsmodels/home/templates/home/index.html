@@ -22,9 +22,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">What we do</a></li>
-							<li><a href="#two">Models</a></li>
-							<li><a href="#three">Contact Us</a></li>
+							<li><a href="#one">Models</a></li>
+							<li><a href="#two">Contact Us</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -47,79 +46,47 @@
 				<!-- One -->
 					<section id="one" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>Our Mission</h2>
+							<h2>Models</h2>
 							<p>To many, "machine learning" is a black box, but it is consistently used by many odds makers and professional handicappers to generate predictions which guide their lines and decisions. We provide the average sports bettor and fantasy player with transparent tools and information.</p>
 							<div class="features">
 								<section>
-									<span class="icon solid major fa-eye"></span>
-									<h3>Transparency</h3>
-									<p>There is no such thing as a perfectly predictive model in sports. The randomness of sports makes it mathematically impossible to predict on a consistent basis. Gaining edge over odds makers comes from combining statistical tools with your own sports knowledge and intuition. For some people, these machine learning models will provide no value, but to others, when combined with their ability to analyze sports from a human perspective, can yield great results.</p>
+									<span class="icon solid major fa-hockey-puck"></span>
+									<h3>NHL</h3>
+									<p>Daily offensive output predictions for every NHL skater.</p>
+									<ul class="actions">
+										<a href="{% url 'nhl:index' %}" class="button">Model</a>
+									</ul>
 								</section>
 								<section>
-									<span class="icon solid major fa-code"></span>
-									<h3>The Process</h3>
-									<p>Our team applies machine learning models and methods to publically avaiable data to create predictive models for various leagues and sports. The models we use in production are the ones we feel the most confident in based on model testing and accuracy metrics. We will always be transparent about our methodologies and accuracy scores! They will always be displayed in clear language on each models homepage.</p>
+									<span class="icon solid major fa-golf-ball"></span>
+									<h3>PGA</h3>
+									<p>Tournament by tournament final standings predictions.</p>
+										<ul class="actions">
+											<li><a href="{% url 'pga:index' %}" class="button">Model</a></li>
+										</ul>
 								</section>
 								<section>
-									<span class="icon solid major fa-database"></span>
-									<h3>Models</h3>
-									<p>As of now, we have a daily hockey model that can predict an individual skaters fantasy output for each game. Along with that, we develop individual mdoels for each golf tournament, predicting the finishing position of each golfer in the field. These models have taken months to develop, testing different methodologies and feature engineering.</p>
+									<span class="icon solid major fa-baseball-ball"></span>
+									<h3>MLB</h3>
+									<p>Daily predictions for MLB hitters and pitchers (coming soon).</p>
+									<ul class="actions">
+										<li><a href="{% url 'mlb:index' %}" class="button">Model</a></li>
+									</ul>
 								</section>
 								<section>
-									<span class="icon solid major fa-lightbulb"></span>
-									<h3>Future</h3>
-									<p>Let us know! We love exploring new model ideas. If there is data, we will try to model it! We are currently working on expanding our hockey models to predict all of the statistics for a skater (goals, assists, points) instead of solely their fantasy output. We also are currently developing our biggest model yet, a daily predictor for MLB hitters and pitchers.</p>
+									<span class="icon solid major fa-basketball-ball"></span>
+									<h3>March Madness</h3>
+									<p>Machine Learning generated March Madness Bracket (coming soon).</p>
+									<ul class="actions">
+										<li><a href="{% url 'mlb:index' %}" class="button">Model</a></li>
+									</ul>
 								</section>
 							</div>
 						</div>
 					</section>
 
 				<!-- Two -->
-					<section id="two" class="wrapper style2 spotlights">
-						<section>
-							<div class="content">
-								<div class="inner">
-									<span class="icon solid major fa-golf-ball"></span>
-									<h2>PGA</h2>
-									<p>PGA model that predicts the finishing position for all golfers. Model is retrained every tournament to maximize accuracy. Click to view predictions and more information on model methodology.</p>
-									<ul class="actions">
-										<li><a href="{% url 'pga:index' %}" class="button">Learn More</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<!--<a href="#" class="image"><img src="{% static 'home/images/pic02.jpg' %}" alt="" data-position="top center" /></a>/-->
-							<div class="content">
-								<div class="inner">
-									<span class="icon solid major fa-hockey-puck"></span>
-									<h2>NHL</h2>
-									<p>NHL model that generates daily predictions for all skaters. Daily fantasy points are the only available metric for now. An individual model for goals and goalies is coming soon. Click to view predictions and more information on model methodology.</p>
-									<ul class="actions">
-										<li><a href="{% url 'nhl:index' %}" class="button">Learn More</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<!--<a href="#" class="image"><img src="{% static 'home/images/pic03.jpg' %}" alt="" data-position="25% 25%" /></a>-->
-							<div class="content">
-								<div class="inner">
-									<span class="icon solid major fa-baseball-ball"></span>
-									<h2>MLB</h2>
-									<p>MLB model is in development. It will generate daily predictions for hitters and pitchers. Click to read more about our strategy and progress.</p>
-									<ul class="actions">
-										<li><a href="{% url 'mlb:index' %}" class="button">Learn More</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-					</section>
-
-				
-
-				<!-- Three -->
-					<section id="three" class="wrapper style1 fade-up">
+					<section id="two" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h2>Contact Us</h2>
 							<p>If you have questions, complaints, suggestions, or ideas on different models you would like to see. Feel free to email or submit a short message below.</p>
@@ -149,20 +116,20 @@
 									<ul class="contact">
 										<li>
 											<h3>Email</h3>
-											<a href="#">something@gmail.com</a>
+											<a href="#">sportsmodels@gmail.com</a>
 										</li>
-										<li>
+										<!-- <li>
 											<h3>Phone</h3>
 											<span>(000) 000-0000</span>
-										</li>
+										</li> -->
 										<li>
 											<h3>Social</h3>
 											<ul class="icons">
 												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li> -->
 											</ul>
 										</li>
 									</ul>
