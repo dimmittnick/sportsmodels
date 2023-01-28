@@ -94,11 +94,11 @@
                                 {% for pred in hit_preds %}
                                 <tr>
                                     <td>{{ pred.name }}</td>
-                                    <td>{{ pred.runs }}</td>
-                                    <td>{{ pred.homerun }}</td>
-                                    <td>{{ pred.rbi }}</td>
-                                    <td>{{ pred.sb }}</td>
-                                    <td>{{ pred.obp }}</td>
+                                    <td>{{ pred.runs|floatformat:0 }}</td>
+                                    <td>{{ pred.homerun|floatformat:0 }}</td>
+                                    <td>{{ pred.rbi|floatformat:0 }}</td>
+                                    <td>{{ pred.sb|floatformat:0 }}</td>
+                                    <td>{{ pred.obp|floatformat:3 }}</td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -120,11 +120,11 @@
                                 {% for pred in pitch_preds %}
                                 <tr>
                                     <td>{{ pred.name }}</td>
-                                    <td>{{ pred.wins }}</td>
-                                    <td>{{ pred.so }}</td>
-                                    <td>{{ pred.era }}</td>
-                                    <td>{{ pred.whip }}</td>
-                                    <td>{{ pred.svh }}</td>
+                                    <td>{{ pred.wins|floatformat:0 }}</td>
+                                    <td>{{ pred.so|floatformat:0 }}</td>
+                                    <td>{{ pred.era|floatformat:2 }}</td>
+                                    <td>{{ pred.whip|floatformat:3 }}</td>
+                                    <td>{{ pred.svh|floatformat:0 }}</td>
                                 </tr>
                                 {% endfor %}
                             </table>
