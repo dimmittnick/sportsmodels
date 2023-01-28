@@ -1,11 +1,152 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>sportsmodels.org | mlb</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/home/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/home/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/home/images/favicon-16x16.png">
+		<link rel="manifest" href="/static/home/images/site.webmanifest">
+        <title>sportsmodels.org | MLB</title>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'home/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'home/css/noscript.css' %}" /></noscript>
     </head>
-    <body>
-        <h1>mlb predictions</h1>
-        <a href="{% url 'home:index' %}">home</a>
-    </body>
 
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px;
+        }
+
+        .content-table thead tr {
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px;
+        }
+
+        .content-table tbody tr:last-of-type{
+            border-bottom: 2px solid;
+        }
+        
+        .content-table tr:hover {
+            font-weight: bold;
+            color: white;
+        }
+
+    </style>
+
+    <body class="is_preload">
+        <!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Introduction</a></li>
+							<li><a href="#one">Hitters</a></li>
+                            <li><a href="#two">Pitchers</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+        <!-- Wrapper -->
+			<div id="wrapper">
+                <!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+                            <h1>MLB Predictions</h1>
+                            <p>Season long predictions for both hitters and pitchers. Once season begins, there will be daily predictions for both.</p>
+                            <ul class="actions">
+								<li><a href="#one" class="button scrolly">Hitters</a></li>
+                                <li><a href="#two" class="button scrolly">Pitchers</a></li>
+                                <li><a href="{% url 'home:index' %}" class="button scrolly">Return Home</a></li>
+							</ul>
+                        </div>
+                    </section>
+                <!-- One -->
+					<section id="one" class="wrapper style3 fade-up">
+						<div class="inner">
+                            <h2>Hitters</h2>
+                            <table class="content-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>R</th>
+                                    <th>HR</th>
+                                    <th>RBI</th>
+                                    <th>SB</th>
+                                    <th>OBP</th>
+                                </tr>
+                                {% for pred in hit_preds %}
+                                <tr>
+                                    <td>{{ pred.name }}</td>
+                                    <td>{{ pred.runs }}</td>
+                                    <td>{{ pred.homerun }}</td>
+                                    <td>{{ pred.rbi }}</td>
+                                    <td>{{ pred.sb }}</td>
+                                    <td>{{ pred.obp }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </section>
+                <!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Pitchers</h2>
+							<table class="content-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>W</th>
+                                    <th>SO</th>
+                                    <th>ERA</th>
+                                    <th>WHIP</th>
+                                    <th>SVH</th>
+                                </tr>
+                                {% for pred in pitch_preds %}
+                                <tr>
+                                    <td>{{ pred.name }}</td>
+                                    <td>{{ pred.wins }}</td>
+                                    <td>{{ pred.so }}</td>
+                                    <td>{{ pred.era }}</td>
+                                    <td>{{ pred.whip }}</td>
+                                    <td>{{ pred.svh }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </section>
+            <!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+            <!-- Scripts -->
+			<script src="{% static 'home/js/jquery.min.js' %}"></script>
+			<script src="{% static 'home/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'home/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'home/js/browser.min.js' %}"></script>
+			<script src="{% static 'home/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'home/js/util.js' %}"></script>
+			<script src="{% static 'home/js/main.js' %}"></script>
+
+        
+    </body>
 </html>

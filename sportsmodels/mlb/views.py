@@ -1,9 +1,13 @@
-from django import forms
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from .models import HitterPreds, PitcherPreds
 
-
-# Create your views here.
 def index(request):
-    return render(request, "mlb/index.html")
+    hitpreds = HitterPreds.objects.all()
+    pitchpreds = PitcherPreds.objects.all()
+    hit_preds = sorted(hitpreds, key=lambda x:x.homerun, reverse=True)
+    pitch_preds = sorted(pitchpreds, key=lambda x:x.era, reverse=False)
+    context = {'hitspreds':hitpreds,
+               'pitchpreds':pitchpreds,
+               'hit_preds':hit_preds,
+               'pitch_preds':pitch_preds}
+    return render(request, "mlb/index.html", context)
