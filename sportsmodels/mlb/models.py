@@ -9,7 +9,6 @@ class HitterPreds(models.Model):
     rbi = models.FloatField(('rbi'))
     sb = models.FloatField(('sb'))
     obp = models.FloatField(('obp'))
-    value = models.FloatField(('value'))
 
 class PitcherPreds(models.Model):
     name = models.CharField(('Name'), max_length=64)
