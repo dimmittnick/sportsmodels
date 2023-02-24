@@ -171,12 +171,12 @@ def main(goalie=False):
     dataframe: clean dataframe containing all data segments ready for feature engineering and modeling
     """
 
-    df_skater = df_gen(start_date=yesterday, end_date=end_date, data_seg='skater', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/skaters.csv", start=0, stop=10000, step=100, update=True, save_data=False)
-    df_misc = df_gen(start_date=yesterday, end_date=end_date, data_seg='misc', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/misc.csv", start=0, stop=10000, step=100, update=True, save_data=False)
-    df_shot = df_gen(start_date=yesterday, end_date=end_date, data_seg='shots', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/shots.csv", start=0, stop=10000, step=100, update=True, save_data=False)
-    df_toi = df_gen(start_date=yesterday, end_date=end_date, data_seg='toi', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/toi.csv", start=0, stop=10000, step=100, update=True, save_data=False)
-    df_goalie = df_gen(start_date=yesterday, end_date=end_date, data_seg='goalie', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/goalies.csv", start=0, stop=10000, step=100, update=True, save_data=False)
-    df_team = df_gen(start_date=yesterday, end_date=end_date, data_seg='team', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/teams.csv", start=0, stop=10000, step=100, update=True, save_data=False)
+    df_skater = df_gen(start_date=yesterday, end_date=end_date, data_seg='skater', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/skaters.csv", start=0, stop=10000, step=100, update=True, save_data=True)
+    df_misc = df_gen(start_date=yesterday, end_date=end_date, data_seg='misc', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/misc.csv", start=0, stop=10000, step=100, update=True, save_data=True)
+    df_shot = df_gen(start_date=yesterday, end_date=end_date, data_seg='shots', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/shots.csv", start=0, stop=10000, step=100, update=True, save_data=True)
+    df_toi = df_gen(start_date=yesterday, end_date=end_date, data_seg='toi', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/toi.csv", start=0, stop=10000, step=100, update=True, save_data=True)
+    df_goalie = df_gen(start_date=yesterday, end_date=end_date, data_seg='goalie', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/goalies.csv", start=0, stop=10000, step=100, update=True, save_data=True)
+    df_team = df_gen(start_date=yesterday, end_date=end_date, data_seg='team', update_path="/Users/nickdimmitt/Desktop/dfs_local/data/teams.csv", start=0, stop=10000, step=100, update=True, save_data=True)
 
     df_skater = df_skater.drop(['evGoals', 'evPoints','faceoffWinPct', 'gameWinningGoals', 'gamesPlayed', 'lastName', 'otGoals', 'pointsPerGame', 'timeOnIcePerGame'], axis=1)
     df_skater = df_skater.loc[:, ~df_skater.columns.str.contains('^Unnamed')]
